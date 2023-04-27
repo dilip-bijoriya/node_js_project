@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-
+const CategoryModel = require('./categories.model')
 const schema = new Schema({
     "name": {
         type: String,
@@ -17,10 +17,12 @@ const schema = new Schema({
         min: 0
     },
     "category": {
-        type: String,
+        type: Schema.Types.ObjectId,
         required: true,
-        trim: true
+        ref: 'Category'
     }
+}, {
+    timestamps: true
 });
 
 module.exports.ProductModel = model('Product', schema);
