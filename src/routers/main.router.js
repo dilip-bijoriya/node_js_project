@@ -18,23 +18,23 @@ router.get("/customers/list", getCustomersList);
 
 // product list
 router.get("/products", verifyToken, getProductList);
-router.post("/addProduct", addProduct);
-router.post("/updateProduct", updateProduct);
-router.post("/deleteProduct/:id", deleteProduct);
-router.get("/api/getSingleProduct/:id", getSingleProduct);
+router.post("/addProduct", verifyToken, addProduct);
+router.post("/updateProduct", verifyToken, updateProduct);
+router.post("/deleteProduct/:id", verifyToken, deleteProduct);
+router.get("/api/getSingleProduct/:id", verifyToken, getSingleProduct);
 
 // category api
 router.get("/api/getAllCategory", getAllCategory);
 router.post("/api/getSingleCategory/:id", getSingleCategory);
 
 // user api
-router.get("/user", getUserList);
-router.post("/addUser", addUser);
-router.post("/updateUser", updateUser);
-router.post("/deleteUser/:id", deleteUser);
+router.get("/user", verifyToken, getUserList);
+router.post("/addUser", verifyToken, addUser);
+router.post("/updateUser", verifyToken, updateUser);
+router.post("/deleteUser/:id", verifyToken, deleteUser);
 
 // cart api
-router.post("/api/addCart", addCart);
+router.post("/api/addCart", verifyToken, addCart);
 
 // end routing...
 router.all("/*", (req, res) => {
