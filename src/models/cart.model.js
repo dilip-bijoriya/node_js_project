@@ -6,9 +6,12 @@ const schema = new Schema({
         ref: "user",
         unique: true
     },
-    productsId: [{
-        type: Schema.Types.ObjectId,
-        ref: "Product"
+    items: [{
+        productId: {
+            type: Schema.Types.ObjectId,
+            ref: "Product"
+        },
+        qty: { type: Number, default: 1 },
     }]
 }, {
     timestamps: true

@@ -26,4 +26,4 @@ const schema = new Schema({
     }
 });
 
-module.exports.CustomerModel = model("SignIn", schema);
+module.exports.CustomerModel = model("Customer", schema);

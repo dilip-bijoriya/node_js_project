@@ -3,10 +3,11 @@ const { userModel } = require("../models/user.modal");
 const getUserList = async (req, res) => {
     try {
         const data = await userModel.find();
+        const total = await userModel.count()
         return res.status(200).send({
             error: false,
             message: 'success',
-            response: data
+            response: { data, total }
         });
     } catch (error) {
         console.error(error);
