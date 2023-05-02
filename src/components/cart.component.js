@@ -18,7 +18,7 @@ const getCartList = async (req, res) => {
             error: false,
             message: "success",
             response: { cart, total }
-        })
+        });
     } catch (error) {
         console.error(error);
     }

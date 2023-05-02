@@ -8,6 +8,8 @@ const router = Router();
 
 const { CreateAccount, LoginAccount } = require("./../components/customer.component");
 const verifyToken = require("../middleware/token.middleware");
+const { uploadFile, streamFile, deleteFile } = require("../components/upload.component");
+const sendMailF = require("../components/sendMail.component");
 
 // signUp api
 router.post("/api/CreateAccount", CreateAccount);
@@ -36,6 +38,14 @@ router.post("/api/deleteUser/:id", verifyToken, deleteUser);
 // cart api
 router.get("/api/getCartsList", verifyToken, getCartList)
 router.post("/api/addCart", verifyToken, addCart);
+
+// upload file api's
+router.post('/api/uploads', uploadFile);
+router.get('/api/stream/:id', streamFile);
+router.post('/api/deleteFile/:id', deleteFile);
+
+// send mail api's
+router.post('/api/sendEmail', sendMailF);
 
 // end routing...
 router.all("/*", (req, res) => {
