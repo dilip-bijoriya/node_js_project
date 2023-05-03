@@ -35,7 +35,8 @@ const uploadFile = async (req, res) => {
 
         // check the path avalable in locally
         if (!fs.existsSync(path)) {
-            console.log('Path not exist, Create a dir.')
+            console.log('Path not exist, Create a dir.');
+
             fs.mkdirSync(path, { recursive: true });
         }
         // in exist tupload the file

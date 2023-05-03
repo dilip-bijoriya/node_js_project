@@ -10,10 +10,14 @@ const { CreateAccount, LoginAccount } = require("./../components/customer.compon
 const verifyToken = require("../middleware/token.middleware");
 const { uploadFile, streamFile, deleteFile } = require("../components/upload.component");
 const sendMailF = require("../components/sendMail.component");
+const { forgotPassword, resetPassword, emailVerify } = require("../components/forgotPassword.component");
 
 // signUp api
 router.post("/api/CreateAccount", CreateAccount);
 router.post("/api/LoginAccount", LoginAccount);
+router.post("/api/forgotPassword", forgotPassword);
+router.post("/api/emailVerify", emailVerify);
+router.post("/api/resetPassword", resetPassword);
 
 // customer list
 router.get("/customers/list", getCustomersList);
