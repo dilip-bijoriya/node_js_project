@@ -12,6 +12,10 @@ const schema = new Schema({
         trim: true,
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Email address is invalid']
     },
+    isVerified: {
+        type: Boolean,
+        default: false
+    },
     password: {
         type: String,
         required: true,

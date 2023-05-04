@@ -11,12 +11,13 @@ const verifyToken = require("../middleware/token.middleware");
 const { uploadFile, streamFile, deleteFile } = require("../components/upload.component");
 const sendMailF = require("../components/sendMail.component");
 const { forgotPassword, resetPassword, emailVerify } = require("../components/forgotPassword.component");
+const { createOrder } = require("../components/order.component");
 
 // signUp api
 router.post("/api/CreateAccount", CreateAccount);
 router.post("/api/LoginAccount", LoginAccount);
 router.post("/api/forgotPassword", forgotPassword);
-router.post("/api/emailVerify", emailVerify);
+router.get("/api/emailVerify/:key", emailVerify);
 router.post("/api/resetPassword", resetPassword);
 
 // customer list
@@ -42,6 +43,7 @@ router.post("/api/deleteUser/:id", verifyToken, deleteUser);
 // cart api
 router.get("/api/getCartsList", verifyToken, getCartList)
 router.post("/api/addCart", verifyToken, addCart);
+router.post("/api/createOrder", createOrder)
 
 // upload file api's
 router.post('/api/uploads', uploadFile);

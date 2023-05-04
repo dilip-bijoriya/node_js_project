@@ -30,10 +30,10 @@ const getProductList = async (req, res) => {
 const addProduct = async (req, res) => {
   try {
     const { name, brand, price, category } = req.body;
-    if (!name) return res.status(404).send({ error: true, message: "name is required!", response: null });
-    if (!brand) return res.status(404).send({ error: true, message: "brand is required!", response: null });
-    if (!category) return res.status(404).send({ error: true, message: "category is required!", response: null });
-    if (!price) return res.status(404).send({ error: true, message: "price is required!", response: null });
+    if (!name) return res.status(400).send({ error: true, message: "name is required!", response: null });
+    if (!brand) return res.status(400).send({ error: true, message: "brand is required!", response: null });
+    if (!category) return res.status(400).send({ error: true, message: "category is required!", response: null });
+    if (!price) return res.status(400).send({ error: true, message: "price is required!", response: null });
 
     const data = await ProductModel.create({ name, brand, category, price });
     return res.status(200).send({

@@ -34,12 +34,24 @@ const forgotPassword = async (req, res) => {
 const emailVerify = async (req, res) => {
     try {
         const key = req.params.key;
-        const id = await client.get(key);
-        await CustomerModel.findByIdAndUpdate(id);
-        return res.status(200).send({
+        if (!key) return res.status(400).send({
             error: false,
-            message: "email verified!"
+            message: "key not found."
         });
+        const _id = await client.get(key);
+        if (!_id) return res.status(400).send({
+            error: false,
+            message: "invalid token."
+        });
+        await CustomerModel.findByIdAndUpdate({ _id }, { isVerified: true });
+        const redirect_url = process.env.AFTER_EMAIL_VFY_REDIRECT_URL || '';
+        if (!redirect_url)
+            return res.status(200).send({
+                error: false,
+                message: "email verified!",
+                data: null
+            });
+        return res.redirect(301, redirect_url);
     } catch (error) {
         console.error(error);
         return res.status(500).send({
